@@ -1,0 +1,6 @@
+bin
+CACHEDIR.TAG
+lib
+pyvenv.cfg
+share
+**/__pycache__**

@@ -1,1 +1,31 @@
-# invest-lakehouse
+
+# Invest Scraper Portfolio
+
+This project is an application to extract, load and transform data from postgres to lakehouse using spark.
+
+## Getting Started
+
+To start the project, follow the commands below:
+
+### Docker Commands
+
+- **Start server:**
+  ```bash
+  docker-compose up -d 
+  ```
+
+- **Enter on server:**
+  ```bash
+  docker exec -it pyspark-container bash
+  ```
+
+- **Run ingestion to bronze layer:**
+  ```bash
+  python3 app/ingestion/bronze/tickers/main.py
+  ```
+
+  - **Run transformation from bronze layer to silver layer:**
+  ```bash
+  python3 app/transform/silver/tickers/main.py
+  ```
+
