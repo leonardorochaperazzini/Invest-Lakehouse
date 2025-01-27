@@ -21,11 +21,11 @@ To start the project, follow the commands below:
 
 - **Run ingestion to bronze layer:**
   ```bash
-  python3 app/ingestion/bronze/tickers/main.py
+  python3 app/ingestion/bronze/main.py
   ```
 
   - **Run transformation from bronze layer to silver layer:**
   ```bash
-  python3 app/transform/silver/tickers/main.py
+  python3 app/transform/silver/main.py
   ```
 

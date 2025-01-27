@@ -56,15 +56,17 @@ services:
       - spark-master
       - init-jars
     environment:
-      - SPARK_MASTER=${SPARK_MASTER}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_S3_BUCKET=${AWS_S3_BUCKET}
+      - AWS_REGION=${AWS_REGION}
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_HOST=${POSTGRES_HOST}
       - POSTGRES_PORT=${POSTGRES_PORT}
-      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-      - AWS_S3_BUCKET=${AWS_S3_BUCKET}
+      - PRINT_LOG=${PRINT_LOG}
+      - SPARK_MASTER=${SPARK_MASTER}
     networks:
       - my-shared-network
       - spark-network
@@ -101,6 +103,8 @@ services:
       apt-get update &&
       apt-get install -y curl &&
       curl -o /shared-jars/postgresql-42.6.0.jar https://jdbc.postgresql.org/download/postgresql-42.6.0.jar &&
+      curl -o /shared-jars/iceberg-spark-runtime.jar https://repo1.maven.org/maven2/org/apache/iceberg/iceberg-spark-runtime-3.4_2.12/1.7.1/iceberg-spark-runtime-3.4_2.12-1.7.1.jar &&
+      curl -o /shared-jars/iceberg-aws-bundle.jar https://repo1.maven.org/maven2/org/apache/iceberg/iceberg-aws-bundle/1.7.1/iceberg-aws-bundle-1.7.1.jar &&
       chmod -R 777 /shared-jars"
     volumes:
       - shared-jars:/shared-jars
