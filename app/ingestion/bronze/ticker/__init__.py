@@ -1,10 +1,10 @@
 from app.constant.source import TICKERS
-from app.ingestion.service.IngestionBronze import IngestionBronze
+from app.ingestion.service.Spark import Spark as SparkService
 
 def main():
-    ingestion_bronze = IngestionBronze()
+    spark_service = SparkService()
 
-    ingestion_bronze.ingest(TICKERS)
+    spark_service.ingest(TICKERS)
 
 if __name__ == "__main__":
     main()

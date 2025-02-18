@@ -2,7 +2,7 @@ import os
 from pyspark.sql import SparkSession
 from app.constant.lakehouse import BRONZE
 
-class SparkFactory():
+class SparkSessionFactory():
     def __init__(self, iceberg=False, layer = BRONZE):
         self.layer = layer
         self.iceberg = iceberg
@@ -26,14 +26,11 @@ class SparkFactory():
             return SparkSession.builder \
                 .appName("Iceberg with AWS Glue and S3") \
                 .config("spark.jars", "/shared-jars/iceberg-spark-runtime.jar,/shared-jars/iceberg-aws-bundle.jar") \
-                .config("spark.sql.defaultCatalog", "glue_catalog") \
-                .config("spark.sql.catalog.glue_catalog", "org.apache.iceberg.spark.SparkCatalog") \
-                .config("spark.hadoop.fs.s3a.access.key", self.access_key) \
-                .config("spark.hadoop.fs.s3a.secret.key", self.secret_key) \
-                .config("spark.hadoop.fs.s3a.endpoint", "s3.amazonaws.com") \
-                .config("spark.sql.catalog.glue_catalog.warehouse", f"s3://{self.s3_bucket}/{self.layer}") \
-                .config("spark.sql.catalog.glue_catalog.catalog-impl", "org.apache.iceberg.aws.glue.GlueCatalog") \
-                .config("spark.sql.catalog.glue_catalog.io-impl", "org.apache.iceberg.aws.s3.S3FileIO") \
+                .config("spark.sql.catalog.spark_catalog", "org.apache.iceberg.spark.SparkSessionCatalog") \
+                .config("spark.sql.catalog.spark_catalog.warehouse", f"s3://{self.s3_bucket}/{self.layer}") \
+                .config("spark.sql.catalog.spark_catalog.catalog-impl", "org.apache.iceberg.aws.glue.GlueCatalog") \
+                .config("spark.sql.catalog.spark_catalog.io-impl", "org.apache.iceberg.aws.s3.S3FileIO") \
+                .config("spark.sql.extensions", "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions") \
                 .getOrCreate()
         
         else:

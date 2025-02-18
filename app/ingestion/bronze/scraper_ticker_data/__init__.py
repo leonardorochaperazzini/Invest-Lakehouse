@@ -1,10 +1,10 @@
 from app.constant.source import SCRAPER_TICKERS_DATA
-from app.ingestion.service.IngestionBronze import IngestionBronze
+from app.ingestion.service.Spark import Spark as SparkService
 
 def main():
-    ingestion_bronze = IngestionBronze()
+    spark_service = SparkService()
 
-    ingestion_bronze.ingest(SCRAPER_TICKERS_DATA)
+    spark_service.ingest(SCRAPER_TICKERS_DATA)
 
 if __name__ == "__main__":
     main()

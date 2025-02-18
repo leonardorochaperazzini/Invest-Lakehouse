@@ -9,8 +9,6 @@ S3_BRONZE_PATH = f"s3a://{S3_BUCKET}/{BRONZE}"
 S3_SILVER_PATH = f"s3a://{S3_BUCKET}/{SILVER}"
 S3_GOLD_PATH = f"s3a://{S3_BUCKET}/{GOLD}"
 
-GLUE_CATALOG = "glue_catalog"
-
 DATABASE_LAKEHOUSE_SILVER = "lakehouse_tutorial_silver"
 DATABASE_LAKEHOUSE_GOLD = "lakehouse_tutorial_gold"
 
