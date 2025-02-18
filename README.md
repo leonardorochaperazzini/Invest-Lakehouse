@@ -1,7 +1,7 @@
 
 # Invest Scraper Portfolio
 
-This project is an application to extract, load and transform data from postgres to lakehouse using spark.
+This project is an application to extract, load and transform data from postgres to lakehouse using py spark on bronze and silver layers.
 
 ## Getting Started
 
